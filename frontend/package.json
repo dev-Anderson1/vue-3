@@ -1,18 +1,26 @@
 {
-  "name": "curso-vue-3",
+  "name": "frontend",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
+    "serve": "vite preview",
     "build": "vite build",
+    "dev": "vite",
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.2.47",
-    "vue-router": "^4.1.6"
+    "@mdi/font": "5.9.55",
+    "axios": "^1.4.0",
+    "roboto-fontface": "*",
+    "vue": "^3.3.2",
+    "vue-router": "^4.2.0",
+    "vuetify": "npm:@vuetify/nightly@next",
+    "webfontloader": "^1.0.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.0.0",
-    "vite": "^4.1.4"
+    "@vitejs/plugin-vue": "^4.2.3",
+    "vite": "^4.3.5",
+    "vite-plugin-vuetify": "^1.0.0-alpha.12",
+    "vue-cli-plugin-vuetify": "^2.5.8"
   }
 }
