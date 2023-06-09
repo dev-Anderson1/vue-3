@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import LoginView from '../views/LoginView.vue'
-import DashboardView from '../components/DashboardView.vue'
-import UserCreateView from '../views/UserCreateView.vue'
-import * as VueRouter from 'vue-router';
+import HomeView from '@/views/HomeView.vue'
+import LoginView from '@/views/LoginView'
+import DashboardView from '@/views/DashboardView.vue'
+
+import routes from '@/router/routes';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,23 +21,14 @@ const router = createRouter({
     {
       path: '/dashboard',
       name: 'dashboard',
-      component: DashboardView
-    },
-    {
-      path: '/user/create',
-      name: 'user-create',
-      component: UserCreateView
-    },
-
-   
+      component: DashboardView,
+      meta: {
+        auth:true
+      }
+    }
   ]
 })
 
-router.beforeEach((to, from, next) => {
-  if(from === VueRouter.START_LOCATION){
-    localStorage.setItem('route', to.name)
-    next()
-  }
-})
+router.beforeEach(routes);
 
 export default router

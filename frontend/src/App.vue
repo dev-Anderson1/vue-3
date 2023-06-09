@@ -1,38 +1,50 @@
 <template>
-  <div id="app">
-    <div id="nav">
-
-    </div>
+    <div id="app">
+    <ul>
+      <li>
+        <router-link :to="{name:'home'}">
+          Home
+        </router-link>
+      </li>
+      <li>
+        <router-link :to="{name:'login'}">
+          Login
+        </router-link>
+      </li>
+      <li>
+        <router-link :to="{name:'dashboard'}">
+          Dashboard
+        </router-link>
+      </li>
+      <li>
+        <template v-if="auth.isAuthenticated">
+          Olá {{ auth.fullName }} 
+          <button @click="logout">
+            Logout
+          </button>
+        </template>
+        <template v-else>
+          Olá visitante
+        </template>
+      </li>
+    </ul>
+</div>
     <router-view />
-  </div>
-</template>
-<script>
-export default {
-  data(){
-    return{
-
-    }
-  },
-methods:{
-  validate(){
-    this.http.get('me').then((response) =>{
-      console.log(response)
-      if(response.data.status =='Token is Invalid'){
-        this.$router.push('/login')
-      }
-    })
-  }
-},
-created() {
-  var list = ['about']
-  if(!list.includes(localStorage.getItem('route'))){
-    this.validate()
-  }
- 
-},
-
-}
-</script>
-<style>
+  </template>
   
-</style>
+  <script setup>
+  import {useAuth} from '@/stores/auth.js';
+  import {useRouter} from 'vue-router';
+  
+  const auth = useAuth();
+  const router = useRouter();
+  
+  function logout(){
+    auth.clear();
+    router.push({name:'login'});
+  }
+  </script>
+  
+  <style lang="scss" scoped>
+  
+  </style>
